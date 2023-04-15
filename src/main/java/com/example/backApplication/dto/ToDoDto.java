@@ -10,6 +10,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
+
 public class ToDoDto {
     private Long id;
     private String title;
