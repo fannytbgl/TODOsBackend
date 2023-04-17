@@ -18,12 +18,6 @@ public class ToDoService implements com.example.backApplication.services.ToDoSer
     @Autowired
     private ToDoRepository toDoRepository;
 
-    @Autowired
-    private ModelMapper modelMapper ;
-
-    public ToDoService() {
-    }
-
     // we override the method in attempt to return dto
     @Override
     public List<ToDoDto> findAll() {
@@ -43,8 +37,21 @@ public class ToDoService implements com.example.backApplication.services.ToDoSer
 
     @Override
     public ToDoDto add(ToDoDto toDoDto) {
-        var toDoEntity = modelMapper.map(toDoDto, ToDo.class);
-        this.toDoRepository.save(toDoEntity);
-        return modelMapper.map(toDoEntity, ToDoDto.class);
+            ToDo toDo = new ToDo();
+            toDo.setTitle(toDoDto.getTitle());
+            toDo.setStatusType(toDoDto.getStatusType());
+            toDo.setDescription(toDoDto.getDescription());
+            toDo.setDateOfCreation(toDoDto.getDateOfCreation());
+
+            ToDo savedToDo = toDoRepository.save(toDo);
+
+            ToDoDto savedToDoDto = new ToDoDto();
+            savedToDoDto.setId(savedToDo.getId());
+            savedToDoDto.setTitle(savedToDo.getTitle());
+            savedToDoDto.setStatusType(savedToDo.getStatusType());
+            savedToDoDto.setDescription(savedToDo.getDescription());
+            savedToDoDto.setDateOfCreation(savedToDo.getDateOfCreation());
+
+            return savedToDoDto;
     }
 }

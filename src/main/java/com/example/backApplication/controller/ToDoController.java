@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/todos")
+@RequestMapping("/api")
 public class ToDoController {
 
     // endpoint methods
