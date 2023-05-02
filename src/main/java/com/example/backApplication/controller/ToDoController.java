@@ -23,6 +23,7 @@ public class ToDoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
     public ToDoDto add(@RequestBody ToDoDto toDoDto) {
         return toDoService.add(toDoDto);
     }
